@@ -1,62 +1,362 @@
+/* ================= GENERAL ================= */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f6f8;
     margin: 0;
     padding: 0;
-}
-
-header {
-    background-color: #0d47a1;
-    color: white;
-    padding: 20px;
-    text-align: center;
+    scroll-behavior: smooth;
+    color: #333;
 }
 
 h1, h2, h3 {
     color: #0d47a1;
+    margin-bottom: 15px;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
+a {
     color: #0d47a1;
-    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-nav a:hover {
+a:hover {
     color: #ff6f00;
 }
 
-section {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
+ul {
+    list-style-type: square;
+    padding-left: 20px;
 }
 
-.project-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-}
-
+/* ================= BUTTON ================= */
 a.button {
-    text-decoration: none;
-    background-color: #0d47a1;
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
     color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    margin-top: 5px;
-    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s ease, transform 0.3s ease;
 }
 
 a.button:hover {
+    background: linear-gradient(135deg, #ff6f00, #ff8f00);
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}
+
+/* ================= HEADER ================= */
+header {
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    color: white;
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    perspective: 1000px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 500;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+/* ================= PROFILE PHOTO ================= */
+/* ================= PROFILE PHOTO CONTAINER ================= */
+/* Main container for profile picture and verified blue tick */
+.profile-photo-container {
+    position: relative; /* necessary for absolute positioning of blue tick */
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* circular shape */
+    background: linear-gradient(145deg, #1976d2, #0d47a1); /* subtle gradient background */
+    box-shadow: 8px 8px 20px rgba(0,0,0,0.3),  /* soft outer shadow */
+                -8px -8px 20px rgba(255,255,255,0.2); /* highlight for 3D effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden; /* ensures effects stay inside the circle */
+}
+
+/* ================= PROFILE PHOTO HOVER EFFECT ================= */
+/* Adds scale and slight rotation for interactive hover effect */
+.profile-photo-container:hover {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 0 30px rgba(25, 118, 210, 0.6),
+                0 0 60px rgba(13, 71, 161, 0.4);
+}
+
+/* ================= PROFILE PHOTO ================= */
+/* The actual profile picture with circular shape and glow */
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 100%; /* circular image */
+    object-fit: cover;   /* cover entire container without distortion */
+    border: 4px solid #1DA1F2; /* Twitter blue border */
+    box-shadow: 0 0 15px rgba(29, 161, 242, 0.7); /* subtle blue glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for profile photo for extra glow */
+.profile-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(29, 161, 242, 1);
+}
+
+/* ================= VERIFIED BLUE TICK ================= */
+/* Blue verification badge positioned on top of profile photo */
+.profile-photo-container .blue-tick {
+    position: absolute;
+    bottom: 12px;  /* position from bottom */
+    right: 12px;   /* position from right */
+    width: 60px;   /* size of the tick */
+    height: 60px;
+    border-radius: 50%; /* circular badge */
+    background: #1DA1F2; /* blue badge background */
+    color: white;         /* checkmark color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    box-shadow: 0 0 8px rgba(29, 161, 242, 0.8); /* glow effect around tick */
+    animation: pulse 2s infinite; /* subtle pulse animation */
+    z-index: 10; /* ensures tick is above everything */
+}
+
+/* ================= BLUE TICK PULSE ANIMATION ================= */
+@keyframes pulse {
+    0%   { transform: scale(1);   box-shadow: 0 0 5px #1DA1F2; }
+    50%  { transform: scale(1.1); box-shadow: 0 0 15px #1DA1F2; }
+    100% { transform: scale(1);   box-shadow: 0 0 5px #1DA1F2; }
+}
+
+
+
+/* ================= NAVIGATION ================= */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+nav a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    position: relative;
+    padding: 5px 0;
+    transition: all 0.3s ease;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
     background-color: #ff6f00;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+nav a:hover {
+    transform: translateY(-3px) scale(1.05);
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+}
+
+.parallax-section {
+    perspective: 1000px;
+}
+
+.parallax-section .about-card {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+}
+
+
+/* ================= SECTIONS ================= */
+section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #f9fbff;
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= CARDS ================= */
+.about-card, .project-card, .skill-card, .contact-card {
+    background: linear-gradient(145deg, #ffffff, #e8f0fe);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover,
+.project-card:hover,
+.skill-card:hover,
+.contact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* ================= SKILLS & BADGES ================= */
+.skill-card ul li {
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.skill-card ul li:hover {
+    transform: translateX(5px);
+    color: #0d47a1;
+}
+
+.skills-badges, .project-card .skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 20px 0;
+}
+
+.badge, .project-card .badge {
+    background: #1976d2;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.badge:hover,
+.project-card .badge:hover {
+    transform: scale(1.1);
+    background: #ff6f00;
+}
+
+.skill-progress p {
+    margin: 8px 0 5px;
+    font-weight: 500;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
+    border-radius: 12px;
+    transition: width 1.2s ease-in-out;
+}
+
+/* ================= CONTACT BADGES ================= */
+.contact-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.contact-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #0d47a1;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.contact-badge:hover {
+    background: #ff6f00;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* ================= BACK TO TOP BUTTON ================= */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #0d47a1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 1000;
+}
+
+#backToTop:hover {
+    transform: scale(1.1);
+    background: #ff6f00;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    header p { font-size: 1rem; }
+    nav { flex-direction: column; gap: 15px; }
+
+    .profile-photo-container {
+        width: 130px;
+        height: 130px;
+    }
+
+    .profile-photo {
+        width: 110px;
+        height: 110px;
+    }
 }
