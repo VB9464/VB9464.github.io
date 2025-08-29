@@ -123,31 +123,42 @@ header p {
     box-shadow: 0 0 25px rgba(29, 161, 242, 1);
 }
 
-/* ================= VERIFIED BLUE TICK ================= */
-/* Blue verification badge positioned on top of profile photo */
-.profile-photo-container .blue-tick {
-    position: absolute;
-    bottom: 12px;  /* position from bottom */
-    right: 12px;   /* position from right */
-    width: 60px;   /* size of the tick */
-    height: 60px;
-    border-radius: 50%; /* circular badge */
-    background: #1DA1F2; /* blue badge background */
-    color: white;         /* checkmark color */
+/* ================= HEADER NAME ================= */
+header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 20px;
-    box-shadow: 0 0 8px rgba(29, 161, 242, 0.8); /* glow effect around tick */
-    animation: pulse 2s infinite; /* subtle pulse animation */
-    z-index: 10; /* ensures tick is above everything */
+    gap: 10px; /* space between name and tick */
 }
 
-/* ================= BLUE TICK PULSE ANIMATION ================= */
-@keyframes pulse {
-    0%   { transform: scale(1);   box-shadow: 0 0 5px #1DA1F2; }
-    50%  { transform: scale(1.1); box-shadow: 0 0 15px #1DA1F2; }
-    100% { transform: scale(1);   box-shadow: 0 0 5px #1DA1F2; }
+/* ================= BLUE TICK NEXT TO NAME ================= */
+header h1 .blue-tick {
+    width: 36px;       /* size of tick */
+    height: 36px;
+    border-radius: 50%; /* circular */
+    border: 2px solid #ffffff; /* white frame */
+    box-shadow: 0 0 10px rgba(29,161,242,0.8), 0 0 20px rgba(29,161,242,0.5);
+    animation: tickPulse 2s infinite;
+    object-fit: cover;
+}
+
+/* ================= PULSE ANIMATION ================= */
+@keyframes tickPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(29,161,242,0.8), 0 0 20px rgba(29,161,242,0.5);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(29,161,242,1), 0 0 40px rgba(29,161,242,0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(29,161,242,0.8), 0 0 20px rgba(29,161,242,0.5);
+    }
 }
 
 
